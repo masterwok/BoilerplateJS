@@ -1,6 +1,3 @@
-import './index.css'
-
-import numeral from 'numeral'
-
-const value = numeral(1000).format('$0,0.00');
-console.log(`I would bet ${value} on it`); // eslint-disable-line no-console
+import 'material-icons/css/material-icons.min.css';
+import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min.js';
