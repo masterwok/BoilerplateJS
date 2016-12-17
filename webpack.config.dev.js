@@ -1,4 +1,5 @@
 import path from 'path';
+import webpack from 'webpack';
 
 export default {
    debug: true,
@@ -16,12 +17,22 @@ export default {
       filename: 'bundle.js'
    },
    plugins: [
+      new webpack.ProvidePlugin({
+         $: "jquery",
+         jQuery: "jquery",
+         "window.jQuery": "jquery",
+         Hammer: "hammerjs/hammer"
+      })
    ],
    module: {
       loaders: [{
             test: /\.js$/,
             exclude: /node_modules/,
             loaders: ['babel']
+         },
+         {
+            test: '/materialize-css/bin/',
+            loader: 'imports?jQuery=jquery,$=jquery,hammerjs'
          },
          { test: /\.css$/, loader: "style-loader!css-loader" },
          { test: /\.png$/, loader: 'url-loader?limit=100000' },
