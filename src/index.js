@@ -5,6 +5,8 @@ import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
 import jQuery from 'jquery';
 
+import './style/css/site.css';
+
 (function($){
   $(function(){
 
