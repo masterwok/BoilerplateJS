@@ -1,14 +1,37 @@
 import express from 'express';
-import path from 'path';
 import open from 'open';
 import webpack from 'webpack';
 import config from '../webpack.config.dev'
+import mongoose from 'mongoose';
+import passport from 'passport';
+import routes from '../src/config/routes.js';
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import session from 'express-session';
+import configDb from '../src/config/database.js';
 
 /* eslint-disable  no-console */
 
 const port = 3000;
 const app = express();
 const compiler = webpack(config);
+const secret = 'oioihacktheplanet';
+
+// Connect to database
+mongoose.connect(configDb.url);
+
+// Middleware configuration
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(bodyParser());
+
+app.use(session({
+   secret: secret
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Tell webpack to use our webpack dev middleware and pass it our compiler
 app.use(require('webpack-dev-middleware')(compiler, {
@@ -21,11 +44,10 @@ app.use(require('webpack-dev-middleware')(compiler, {
    }
 }));
 
-app.get('/', function (req, res) {
-   res.sendFile(path.join(__dirname, '../src/index.html'))
-});
+// Routes
+routes(app);
 
-app.listen(port, function (err) {
+app.listen(port, (err) => {
    if (err) {
       console.log(err);
    } else {
