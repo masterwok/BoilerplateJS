@@ -5,8 +5,6 @@ import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
 import $ from 'jquery';
 
-import './style/css/site.css';
-
 $(document).ready(function () {
    $('.button-collapse').sideNav();
 });
