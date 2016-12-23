@@ -4,6 +4,7 @@ import webpack from 'webpack';
 import config from '../webpack.config.dev'
 import mongoose from 'mongoose';
 import passport from 'passport';
+import passportConfig from '../src/config/passport.js'
 import routes from '../src/config/routes.js';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
@@ -26,12 +27,12 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser());
 
-app.use(session({
-   secret: secret
-}));
 
+// Configure and initialize passport
+app.use(session({ secret: secret }));
 app.use(passport.initialize());
 app.use(passport.session());
+passportConfig(passport);
 
 // Tell webpack to use our webpack dev middleware and pass it our compiler
 app.use(require('webpack-dev-middleware')(compiler, {
