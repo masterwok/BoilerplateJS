@@ -25,11 +25,18 @@ mongoose.connect(configDb.url);
 // Middleware configuration
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({
+   extended: true
+}));
+app.use(bodyParser.json());
 
 
 // Configure and initialize passport
-app.use(session({ secret: secret }));
+app.use(session({
+   secret: secret,
+   resave: true,
+   saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 passportConfig(passport);
