@@ -1,6 +1,6 @@
-import User from '../models/user'
 import { Strategy as FacebookStrategy } from 'passport-facebook'
 import authConfig from './auth';
+import User from '../models/user'
 
 export default function (passport) {
    passport.serializeUser((user, done) => {
@@ -8,7 +8,7 @@ export default function (passport) {
    });
 
    passport.deserializeUser((id, done) => {
-      User.Schema.findById(id, (err, user) => {
+      User.getById(id, (err, user) => {
          done(err, user);
       });
    });
