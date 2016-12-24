@@ -1,11 +1,18 @@
 import mongoose from 'mongoose';
-import chalk from 'chalk';
 
 // Schema definition for users
 var userSchema = mongoose.Schema({
    facebook: {
-      id: String,
-      token: String,
+      id: {
+         type: String,
+         required: true,
+         unique: true
+      },
+      token: {
+         type: String,
+         required: true,
+         unique: true
+      },
       email: String,
       name: String
    }
@@ -13,7 +20,24 @@ var userSchema = mongoose.Schema({
 
 userSchema.statics.getById = function (id, done) {
    this.findById(id, (err, user) => {
-      done(err, user);
+      return done(err, user);
+   });
+};
+
+userSchema.statics.removeUser = function (id, done) {
+   this.findById(id, (err, user) => {
+      if (err) {
+         return done(err);
+      }
+
+      user.remove((err) => {
+         if (err) {
+            return done(err);
+         }
+
+         return done(null);
+      });
+
    });
 };
 
@@ -23,7 +47,6 @@ userSchema.statics.getByFacebookId = function (id, done) {
       'facebook.id': id
    }, (err, user) => {
       if (err) {
-         console.log(chalk.red(`Error while retrieving user with facebook id: ${id}, ${err}`)); // eslint-disable-line no-console
          return done(err);
       }
 
@@ -33,7 +56,7 @@ userSchema.statics.getByFacebookId = function (id, done) {
 
 // Create a facebook user
 userSchema.statics.createFacebookUser = function (token, refreshToken, profile, done) {
-   let newUser = new this.Schema();
+   let newUser = new User();
 
    newUser.facebook.id = profile.id;
    newUser.facebook.token = token;
@@ -46,12 +69,12 @@ userSchema.statics.createFacebookUser = function (token, refreshToken, profile, 
 
    newUser.save((err) => {
       if (err) {
-         console.log(chalk.red(`Error while creating a new facebook user: ${err}`)); // eslint-disable-line no-console
-         return done(err, null);
+         return done(err);
       }
 
       return done(null, newUser);
    });
 }
 
-export default mongoose.model('User', userSchema);
+let User = mongoose.model('User', userSchema);
+export default User;
