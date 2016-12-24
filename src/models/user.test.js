@@ -3,6 +3,7 @@ import User from './user';
 import mongoose from 'mongoose';
 import configDb from '../config/database.js';
 import es6Promise from 'es6-promise';
+import faker from 'faker';
 
 // The Mongoose promise library is deprecated so supply our own
 mongoose.Promise = es6Promise.Promise;
@@ -15,15 +16,15 @@ let mockUserId = null;
 
 // Mock facebook profile
 let mockProfile = {
-   id: 'facebook-id',
-   token: 'mock-token',
-   refreshToken: 'mock-refresh-token',
+   id: faker.random.uuid(),
+   token: faker.random.uuid(),
+   refreshToken: faker.random.uuid(),
    name: {
-      givenName: 'John',
-      familyName: 'Smith'
+      givenName: faker.name.firstName(),
+      familyName: faker.name.lastName()
    },
    emails: [
-      { value: 'john.smith@gmail.com' }
+      { value: faker.internet.email() }
    ]
 };
 
