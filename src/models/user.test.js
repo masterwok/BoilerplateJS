@@ -2,9 +2,13 @@ import { expect } from 'chai';
 import User from './user';
 import mongoose from 'mongoose';
 import configDb from '../config/database.js';
+import es6Promise from 'es6-promise';
+
+// The Mongoose promise library is deprecated so supply our own
+mongoose.Promise = es6Promise.Promise;
 
 // Connect to database
-mongoose.connect(configDb.url);
+let db = mongoose.connect(configDb.url);
 
 // Mock user Id that is used after it's created
 let mockUserId = null;
@@ -79,7 +83,11 @@ describe('User Model', () => {
             done();
          });
       });
+   });
 
+   after(function () {
+      // runs after all tests in this block
+      db.disconnect();
    });
 
 });
