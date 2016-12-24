@@ -48,6 +48,7 @@
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "cheerio": "^0.22.0",
+    "es6-promise": "^4.0.5",
     "eslint": "^3.12.2",
     "eslint-plugin-import": "^2.2.0",
     "eslint-watch": "^2.1.14",
