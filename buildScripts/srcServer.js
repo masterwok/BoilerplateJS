@@ -11,6 +11,9 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import configDb from '../src/server/config/database.js';
+import expressHandlebars from 'express-handlebars';
+import handlebarsHelpers from '../src/server/helpers/handlebars.js';
+import path from 'path';
 
 /* eslint-disable  no-console */
 
@@ -18,13 +21,20 @@ const port = 3000;
 const app = express();
 const compiler = webpack(config);
 const secret = 'oioihacktheplanet';
-
-// Get our hostname base on Express environment
-let hostname = app.get('env') === 'development' ?
+const hostname = app.get('env') === 'development' ?
    'localhost' :
    'INSERT_AMAZING_HOSTNAME';
+const host = `http://${hostname}:${port}`;
 
-let host = `http://${hostname}:${port}`;
+// Configure the view engine to use Handlebars
+app.engine('.hbs', expressHandlebars({
+   defaultLayout: 'main',
+   extname: '.hbs',
+   layoutsDir: 'src/server/views/layouts',
+   helpers: handlebarsHelpers
+}));
+app.set('views', path.join(__dirname, '../src/server/views'));
+app.set('view engine', '.hbs');
 
 // Connect to database
 mongoose.connect(configDb.url);

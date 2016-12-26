@@ -11,7 +11,7 @@ export default (app) => {
    // when the user is done with the facebook workflow.
    app.get('/auth/facebook/callback',
       passport.authenticate('facebook', {
-         successRedirect: '/home',
+         successRedirect: '/',
          failureRedirect: '/'
       }));
 
