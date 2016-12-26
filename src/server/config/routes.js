@@ -1,5 +1,4 @@
-import path from 'path';
-import configureAuthRoutes, {isLoggedIn} from './auth.routes.js';
+import configureAuthRoutes from './auth.routes.js';
 
 export default function (app) {
 
@@ -8,13 +7,13 @@ export default function (app) {
 
    // Entry point to the application
    app.get('/', (req, res) => {
-      res.sendFile(path.join(__dirname, '../views/index.html'));
-   });
+      if (req.isAuthenticated()) {
+         return res.render('home', {
+            user: req.user
+         });
+      }
 
-   // Entry point for authenticated users
-   app.get('/home', isLoggedIn, (req, res) => {
-      res.sendFile(path.join(__dirname, '../views/home.html'));
+      return res.render('index');
    });
 
 }
-
