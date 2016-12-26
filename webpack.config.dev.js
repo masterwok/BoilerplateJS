@@ -10,7 +10,7 @@ export default {
    colors: true,
    entry: [
       path.resolve(__dirname, 'src/index'),
-      path.resolve(__dirname, 'src/style/css/site.css')
+      path.resolve(__dirname, 'src/server/style/css/site.css')
    ],
    target: 'web',
    output: {

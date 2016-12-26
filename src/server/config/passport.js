@@ -39,9 +39,7 @@ export default function (passport, host) {
 
             return done(null, user);
          });
-
       });
-
    }));
 
 }
