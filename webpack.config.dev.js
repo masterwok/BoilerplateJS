@@ -9,7 +9,7 @@ export default {
    noInfo: false,
    colors: true,
    entry: [
-      path.resolve(__dirname, 'src/server/scripts/main'),
+      path.resolve(__dirname, 'src/client/main.jsx'),
       path.resolve(__dirname, 'src/server/style/css/site.css')
    ],
    target: 'web',
@@ -18,6 +18,12 @@ export default {
       publicPath: '/',
       filename: 'bundle.js'
    },
+   // resolve: {
+   //    extensions: [
+   //       '.js',
+   //       '.jsx'
+   //    ]
+   // },
    plugins: [
       new webpack.ProvidePlugin({
          $: "jquery",
@@ -29,7 +35,7 @@ export default {
    ],
    module: {
       loaders: [{
-            test: /\.js$/,
+            test: /\.(js|jsx)$/,
             exclude: /node_modules/,
             loaders: ['babel']
          },
