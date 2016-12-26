@@ -9,7 +9,7 @@ export default {
    noInfo: false,
    colors: true,
    entry: [
-      path.resolve(__dirname, 'src/index'),
+      path.resolve(__dirname, 'src/server/scripts/main'),
       path.resolve(__dirname, 'src/server/style/css/site.css')
    ],
    target: 'web',
