@@ -2,7 +2,7 @@ import { Strategy as FacebookStrategy } from 'passport-facebook'
 import authConfig from './auth';
 import User from '../models/user'
 
-export default function (passport) {
+export default function (passport, host) {
    passport.serializeUser((user, done) => {
       done(null, user.id);
    });
@@ -16,7 +16,7 @@ export default function (passport) {
    passport.use(new FacebookStrategy({
       clientID: authConfig.facebook.clientID,
       clientSecret: authConfig.facebook.clientSecret,
-      callbackURL: authConfig.facebook.callbackURL,
+      callbackURL: `${host}${authConfig.facebook.callbackPath}`,
       profileFields: ['emails', 'name']
    }, (token, refreshToken, profile, done) => {
 
