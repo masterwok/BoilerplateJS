@@ -4,13 +4,13 @@ import webpack from 'webpack';
 import config from '../webpack.config.dev'
 import mongoose from 'mongoose';
 import passport from 'passport';
-import passportConfig from '../src/config/passport.js'
-import routes from '../src/config/routes.js';
+import configurePassport from '../src/server/config/passport.js'
+import routes from '../src/server/config/routes.js';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
-import configDb from '../src/config/database.js';
+import configDb from '../src/server/config/database.js';
 
 /* eslint-disable  no-console */
 
@@ -18,6 +18,13 @@ const port = 3000;
 const app = express();
 const compiler = webpack(config);
 const secret = 'oioihacktheplanet';
+
+// Get our hostname base on Express environment
+let hostname = app.get('env') === 'development' ?
+   'localhost' :
+   'INSERT_AMAZING_HOSTNAME';
+
+let host = `http://${hostname}:${port}`;
 
 // Connect to database
 mongoose.connect(configDb.url);
@@ -32,6 +39,8 @@ app.use(bodyParser.json());
 
 
 // Configure and initialize passport
+// More info on passport authentication flow:
+// http://toon.io/understanding-passportjs-authentication-flow/
 app.use(session({
    secret: secret,
    resave: true,
@@ -39,7 +48,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-passportConfig(passport);
+configurePassport(passport, host);
 
 // Tell webpack to use our webpack dev middleware and pass it our compiler
 app.use(require('webpack-dev-middleware')(compiler, {
@@ -60,6 +69,6 @@ app.listen(port, (err) => {
       console.log(err);
    } else {
       // Open application in browser
-      open('http://localhost:' + port);
+      open(host);
    }
 });
