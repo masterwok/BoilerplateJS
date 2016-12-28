@@ -18,12 +18,11 @@ export default {
       publicPath: '/',
       filename: 'bundle.js'
    },
-   // resolve: {
-   //    extensions: [
-   //       '.js',
-   //       '.jsx'
-   //    ]
-   // },
+   resolve: {
+      // Resolve extensions automatically so they aren't required during import.
+      // The empty string allows for files with extensions to be imported.
+      extensions: [".webpack.js", ".web.js", ".js", ".jsx", ""]
+   },
    plugins: [
       new webpack.ProvidePlugin({
          $: "jquery",
