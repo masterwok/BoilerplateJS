@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
+import NavigationBarIconMenu from './NavigationBarIconMenu';
 
 export default class NavigationBar extends React.Component {
    constructor(props) {
@@ -11,9 +11,12 @@ export default class NavigationBar extends React.Component {
    render() {
       return <div>
          <AppBar
-            className={this.props.drawerOpen ? 'app-bar expanded' : 'app-bar'}
+            className={this.props.drawerOpen
+            ? 'app-bar expanded'
+            : 'app-bar'}
             onLeftIconButtonTouchTap={this.props.toggleDrawer}
-            title="Development" />
+            iconElementRight={<NavigationBarIconMenu/>}
+            title="Development"/>
       </div>
    }
 
