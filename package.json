@@ -28,6 +28,7 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.14.2",
     "file-loader": "^0.9.0",
+    "font-awesome": "^4.7.0",
     "material-design-icons": "^3.0.1",
     "material-ui": "^0.16.6",
     "method-override": "^2.3.7",
