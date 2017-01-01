@@ -20,8 +20,8 @@ export default class NavigationBarUserMenu extends React.Component {
    render() {
       return <IconMenu
             iconButtonElement={<IconButton className="nav-button-logged-in"><UserAvatar user={this.props.user}/><ExpandMoreIcon/></IconButton>}
-            anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
-            targetOrigin={{horizontal: 'right', vertical: 'bottom'}}>
+            anchorOrigin={{"horizontal":"right","vertical":"bottom"}}
+            targetOrigin={{"horizontal":"right","vertical":"top"}}>
          <MenuItem primaryText="Sign out" onTouchTap={this.signOut}/>
       </IconMenu>;
    }
