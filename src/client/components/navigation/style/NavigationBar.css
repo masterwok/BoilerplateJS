@@ -1,0 +1,14 @@
+
+.nav-button-logged-in {
+   width: auto !important;
+}
+
+.nav-button-logged-in > div {
+   display: flex;
+   align-items: center;
+}
+
+.nav-button-logged-in > div > svg {
+   margin-left: 10px;
+   fill: #000 !important;
+}
