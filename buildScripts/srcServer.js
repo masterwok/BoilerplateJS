@@ -53,7 +53,12 @@ app.use(bodyParser.json());
 app.use(session({
    secret: secret,
    resave: true,
-   saveUninitialized: true
+   saveUninitialized: true,
+   cookie: {
+      path: '/',
+      httpOnly: true,
+      maxAge: 36000000
+   }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
