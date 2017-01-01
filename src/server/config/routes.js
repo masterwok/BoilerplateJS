@@ -7,15 +7,9 @@ export default function (app) {
 
    // Entry point to the application
    app.get('/', (req, res) => {
-      if (req.isAuthenticated()) {
-         return res.render('home', {
-            title: 'Welcome Back!',
-            user: req.user
-         });
-      }
-
-      return res.render('index', {
-         title: 'Greetigs, we come in peace <3'
+      return res.render('main', {
+         title: 'Greetigs, we ycome in peace <3',
+         user: req.user
       });
    });
 

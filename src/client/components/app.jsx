@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import NavigationBar from './navigation/NavigationBar';
 import NavigationDrawer from './navigation/NavigationDrawer';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -32,7 +31,9 @@ export default class App extends React.Component {
          <div>
             <NavigationBar
                drawerOpen={this.state.drawerOpen}
-               toggleDrawer={this.toggleDrawer}/>
+               toggleDrawer={this.toggleDrawer}
+               user={this.state.user}>
+            </NavigationBar>
             <NavigationDrawer drawerOpen={this.state.drawerOpen}/>
          </div>
       </MuiThemeProvider>

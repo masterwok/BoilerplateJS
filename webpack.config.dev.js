@@ -10,7 +10,7 @@ export default {
    colors: true,
    entry: [
       path.resolve(__dirname, 'src/client/main.jsx'),
-      path.resolve(__dirname, 'src/server/style/css/site.css')
+      path.resolve(__dirname, 'src/server/style/site.css')
    ],
    target: 'web',
    output: {
@@ -19,9 +19,13 @@ export default {
       filename: 'bundle.js'
    },
    resolve: {
+      root: path.resolve(__dirname),
+      alias: {
+         client: 'src/client'
+      },
       // Resolve extensions automatically so they aren't required during import.
       // The empty string allows for files with extensions to be imported.
-      extensions: [".webpack.js", ".web.js", ".js", ".jsx", ""]
+      extensions: [".webpack.js", ".web.js", ".js", ".jsx", ".css", ""]
    },
    plugins: [
       new webpack.ProvidePlugin({

@@ -28,7 +28,6 @@ const host = `http://${hostname}:${port}`;
 
 // Configure the view engine to use Handlebars
 app.engine('.hbs', expressHandlebars({
-   defaultLayout: 'main',
    extname: '.hbs',
    layoutsDir: 'src/server/views/layouts',
    helpers: handlebarsHelpers
