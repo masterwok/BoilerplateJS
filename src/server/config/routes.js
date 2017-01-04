@@ -8,7 +8,7 @@ export default function (app) {
    // Entry point to the application
    app.get('/', (req, res) => {
       return res.render('main', {
-         title: 'Greetigs, we ycome in peace <3',
+         title: '<3',
          user: req.user
       });
    });
