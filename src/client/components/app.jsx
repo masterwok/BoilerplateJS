@@ -1,29 +1,50 @@
-import React, {Component} from 'react';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import AppContainer from 'client/components/AppContainer';
-import SearchRecipes from 'client/components/recipes/Search';
-import {
-   Router,
-   Route,
-   Link,
-   IndexRoute,
-   hashHistory,
-   browserHistory
-} from 'react-router'
+import React, {Component, PropTypes} from 'react';
+import NavigationBar from 'client/components/navigation/NavigationBar';
+import NavigationDrawer from 'client/components/navigation/NavigationDrawer';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-export default class App extends Component {
+class App extends Component {
    constructor(props) {
       super(props);
 
-      injectTapEventPlugin();
+      this.state = {
+         user: user,
+         drawerOpen: false
+      };
+
+      this.toggleDrawer = this
+         .toggleDrawer
+         .bind(this);
+   }
+
+   toggleDrawer() {
+      this.setState({
+         drawerOpen: !this.state.drawerOpen
+      });
    }
 
    render() {
-      return <Router history={hashHistory}>
-         <Route path='/' component={AppContainer}>
-            <IndexRoute component={SearchRecipes}/>
-         </Route>
-      </Router>;
+      return <MuiThemeProvider>
+         <div>
+            <NavigationBar
+               drawerOpen={this.state.drawerOpen}
+               toggleDrawer={this.toggleDrawer}
+               user={this.state.user}/>
+            <NavigationDrawer drawerOpen={this.state.drawerOpen}/>
+            <div
+               className={`app-content ${this.state.drawerOpen
+               ? 'expanded'
+               : ''}`}>
+               {this.props.children}
+               </div>
+         </div>
+      </MuiThemeProvider>;
    }
 
 };
+
+App.PropTypes = {
+   children: PropTypes.object.isRequired
+}
+
+export default App;
