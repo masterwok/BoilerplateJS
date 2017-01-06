@@ -19,13 +19,12 @@ export default {
       filename: 'bundle.js'
    },
    resolve: {
-      root: path.resolve(__dirname),
-      alias: {
-         client: 'src/client'
-      },
+      root: [
+         path.resolve('./src/client')
+      ],
       // Resolve extensions automatically so they aren't required during import.
       // The empty string allows for files with extensions to be imported.
-      extensions: [".webpack.js", ".web.js", ".js", ".jsx", ".css", ""]
+      extensions: [".js", ".jsx", ".css", ""]
    },
    plugins: [
       new webpack.ProvidePlugin({
