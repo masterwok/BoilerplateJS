@@ -3,10 +3,12 @@
 
 import {combineReducers} from 'redux';
 import user from 'reducers/userReducer';
+import navigation from 'reducers/navigationReducer';
 
 const rootReducer = combineReducers({
    // Add all reducers here...
-   user
+   user,
+   navigation
 });
 
 export default rootReducer;
