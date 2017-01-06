@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import NavigationBar from 'client/components/navigation/NavigationBar';
-import NavigationDrawer from 'client/components/navigation/NavigationDrawer';
+import NavigationBar from 'components/navigation/NavigationBar';
+import NavigationDrawer from 'components/navigation/NavigationDrawer';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {

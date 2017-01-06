@@ -1,19 +1,18 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
-export default class NavigationDrawer extends React.Component {
-   constructor(props) {
-      super(props);
-   }
-
-   render() {
-      return <Drawer docked={true} open={this.props.drawerOpen}>
-         <MenuItem primaryText="Awesome"/>
-         <MenuItem primaryText="Cool"/>
-         <MenuItem primaryText="Great"/>
-         <MenuItem primaryText="Zeff"/>
-      </Drawer>
-   }
-
+const NavigationDrawer = (props) => {
+   return <Drawer docked={true} open={props.drawerOpen}>
+      <MenuItem primaryText="Awesome"/>
+      <MenuItem primaryText="Cool"/>
+      <MenuItem primaryText="Great"/>
+      <MenuItem primaryText="Zeff"/>
+   </Drawer>
 };
+
+NavigationDrawer.PropTypes = {
+   drawerOpen: PropTypes.bool
+}
+
+export default NavigationDrawer;
