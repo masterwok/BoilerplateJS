@@ -1,6 +1,6 @@
 import React from 'react';
-import App from 'client/components/App';
-import SearchRecipes from 'client/components/recipes/Search';
+import App from 'components/App';
+import SearchRecipes from 'components/recipes/Search';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 
 export default(
