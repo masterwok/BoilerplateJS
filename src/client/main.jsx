@@ -5,15 +5,22 @@ import 'material-design-icons/iconfont/material-icons.css';
 import 'font-awesome/css/font-awesome.css';
 import 'flexboxgrid/css/flexboxgrid.css';
 import React from 'react';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import routes from 'components/Routes';
-import {Router, browserHistory} from 'react-router';
+import { Router, browserHistory } from 'react-router';
 import configureStore from 'store/configureStore';
 
-const store = configureStore();
+// Grab the user that's returned from the server-side.
+const user = window.user;
 
+// Pass the user to our root reducer as the initial state.
+const store = configureStore({
+   user
+});
+
+// Inject the tap event plugin for react (React won't require this in the future).
 injectTapEventPlugin();
 
 // Remove has added by facebook on callback url
@@ -25,5 +32,7 @@ if (window.location.hash == '#_=_') {
 
 ReactDOM.render(
    <Provider store={store}>
-   <Router history={browserHistory} routes={routes} user={window.user}/>
-</Provider>, document.getElementById('root'));
+      <Router history={browserHistory} routes={routes}/>
+   </Provider>
+   , document.getElementById('root')
+);
