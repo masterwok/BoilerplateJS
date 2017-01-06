@@ -29,7 +29,7 @@
       "htmlOptions": { // same as the ones passed to js-beautifier.html
          "brace_style": "collapse",
          "indent_char": " ",
-         "indent_size": 2,
+         "indent_size": 20,
          "max_preserve_newlines": 2,
          "preserve_newlines": true
             //wrap_line_length: 250
