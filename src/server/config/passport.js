@@ -1,8 +1,10 @@
 import { Strategy as FacebookStrategy } from 'passport-facebook';
 import authConfig from './auth';
-import User from '../models/user';
 
-export default function (passport, host) {
+export default function (passport, mongoose, host) {
+
+   const User = mongoose.model('User');
+
    passport.serializeUser((user, done) => {
       done(null, user.id);
    });
