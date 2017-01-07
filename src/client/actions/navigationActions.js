@@ -1,5 +1,7 @@
+import * as types from 'actions/actionTypes';
+
 export function toggleDrawer() {
    return {
-      type: 'TOGGLE_DRAWER'
+      type: types.NAV_TOGGLE_DRAWER
    };
 }

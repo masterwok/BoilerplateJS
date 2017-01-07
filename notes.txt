@@ -1,0 +1,18 @@
+
+React Course Notes:
+-------------------------------
+
+Five major peices to a react component:
+1. Constructor
+   - We initialize state here and bind any functions to the "this" context.
+2. Child functions
+   - Called by render for actions like change or click.
+3. Render function
+   - Calls a child component. Markup should be kept seperate. Ideally just call child component
+     that contains markup.
+4. PropTypes
+   - Used to ensure props validation.
+5. Redux connect and related functions:
+   - connect()
+   - mapsStateToProps()
+   - mapDispatchToProps()

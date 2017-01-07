@@ -1,3 +1,4 @@
+
 // This file isn't transpiled so we must use CommonJS and ES5
 
 // Register Babel to transpiler before our tests run

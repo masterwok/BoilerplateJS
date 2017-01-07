@@ -1,0 +1,1 @@
+export const NAV_TOGGLE_DRAWER = 'NAV_TOGGLE_DRAWER';
