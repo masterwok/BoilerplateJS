@@ -13,6 +13,4 @@ export default class UserAvatar extends React.Component {
          src={`http://graph.facebook.com/v2.8/${this.props.user.facebook.id}/picture?width=${this.size}&height=${this.size}`}
          size={this.size}/>;
    }
-
 }
-;

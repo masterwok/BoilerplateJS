@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 import * as navigationActions from 'actions/navigationActions';
 import { bindActionCreators } from 'redux';
 
-var test = asdf;
-
 class App extends Component {
    constructor(props) {
       super(props);

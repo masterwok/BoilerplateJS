@@ -46,7 +46,7 @@ module.exports = {
       'no-underscore-dangle': 0,
       'no-alert': 0,
       'no-lone-blocks': 0,
-      'jsx-quotes': 1,
+      'jsx-quotes': [1, 'prefer-single'],
       'react/display-name': [
          1,
          {
