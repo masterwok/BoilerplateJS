@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import * as navigationActions from 'actions/navigationActions';
 import { bindActionCreators } from 'redux';
 
+// TODO: NEED TO FIx IMPORTS AND GET linter warnings working for PropTypes
+
 class App extends Component {
    constructor(props) {
       super(props);

@@ -70,7 +70,7 @@ describe('User Model', () => {
          expect(err).to.not.equal(null);
          expect(user).to.not.exist;
          done();
-      })
+      });
    });
 
    // Clean up test by removing mock user

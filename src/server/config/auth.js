@@ -4,4 +4,4 @@ export default {
       clientSecret: 'ba8f299745260c94a68033d564fb6284', // your App Secret
       callbackPath: '/auth/facebook/callback'
    }
-}
+};
