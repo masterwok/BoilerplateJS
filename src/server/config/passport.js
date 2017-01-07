@@ -1,6 +1,6 @@
-import { Strategy as FacebookStrategy } from 'passport-facebook'
+import { Strategy as FacebookStrategy } from 'passport-facebook';
 import authConfig from './auth';
-import User from '../models/user'
+import User from '../models/user';
 
 export default function (passport, host) {
    passport.serializeUser((user, done) => {
