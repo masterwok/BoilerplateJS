@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 // Schema definition for users
-var userSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
    facebook: {
       id: {
          type: String,
@@ -56,7 +56,7 @@ userSchema.statics.getByFacebookId = function (id, done) {
 
 // Create a facebook user
 userSchema.statics.createFacebookUser = function (token, refreshToken, profile, done) {
-   let newUser = new User();
+   let newUser = new this();
 
    newUser.facebook.id = profile.id;
    newUser.facebook.token = token;
@@ -74,7 +74,7 @@ userSchema.statics.createFacebookUser = function (token, refreshToken, profile, 
 
       return done(null, newUser);
    });
-}
+};
 
 let User = mongoose.model('User', userSchema);
 export default User;
