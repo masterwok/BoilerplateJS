@@ -1,9 +1,11 @@
 import { expect } from 'chai';
-import User from './user';
 import mongoose from 'mongoose';
-import configDb from '../config/database.js';
+import configureModels from './models.config';
+import configDb from '../config/database';
 import es6Promise from 'es6-promise';
 import faker from 'faker';
+
+const User = configureModels(mongoose).User;
 
 // The Mongoose promise library is deprecated so supply our own
 mongoose.Promise = es6Promise.Promise;
