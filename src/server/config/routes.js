@@ -1,6 +1,6 @@
-import configureAuthRoutes from './auth.routes.js';
+import configureAuthRoutes from './auth.routes';
 
-export default function (app) {
+export default function (app, mongoose) {
 
    // Configure authentication routes
    configureAuthRoutes(app);

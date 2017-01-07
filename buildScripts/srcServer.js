@@ -3,16 +3,17 @@ import open from 'open';
 import webpack from 'webpack';
 import config from '../webpack.config.dev';
 import mongoose from 'mongoose';
+import configureModels from '../src/server/models/models.config';
 import passport from 'passport';
-import configurePassport from '../src/server/config/passport.js';
-import routes from '../src/server/config/routes.js';
+import configurePassport from '../src/server/config/passport';
+import routes from '../src/server/config/routes';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
-import configDb from '../src/server/config/database.js';
+import configDb from '../src/server/config/database';
 import expressHandlebars from 'express-handlebars';
-import handlebarsHelpers from '../src/server/helpers/handlebars.js';
+import handlebarsHelpers from '../src/server/helpers/handlebars';
 import path from 'path';
 
 /* eslint-disable  no-console */
@@ -37,6 +38,7 @@ app.set('view engine', '.hbs');
 
 // Connect to database
 mongoose.connect(configDb.url);
+configureModels(mongoose);
 
 // Middleware configuration
 app.use(morgan('dev'));
@@ -62,7 +64,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-configurePassport(passport, host);
+configurePassport(passport, mongoose, host);
 
 // Tell webpack to use our webpack dev middleware and pass it our compiler
 app.use(require('webpack-dev-middleware')(compiler, {
@@ -76,7 +78,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 
 // Routes
-routes(app);
+routes(app, mongoose);
 
 app.listen(port, (err) => {
    if (err) {
