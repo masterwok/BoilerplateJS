@@ -5,15 +5,15 @@ import MenuItem from 'material-ui/MenuItem';
 const NavigationDrawer = (props) => {
    return (
       <Drawer docked={true} open={props.drawerOpen}>
-         <MenuItem primaryText="Awesome"/>
-         <MenuItem primaryText="Cool"/>
-         <MenuItem primaryText="Great"/>
-         <MenuItem primaryText="Zeff"/>
+         <MenuItem primaryText='Awesome'/>
+         <MenuItem primaryText='Cool'/>
+         <MenuItem primaryText='Meow'/>
+         <MenuItem primaryText='Zeff'/>
       </Drawer>
       );
 };
 
-NavigationDrawer.PropTypes = {
+NavigationDrawer.propTypes = {
    drawerOpen: PropTypes.bool
 };
 

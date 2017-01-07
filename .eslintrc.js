@@ -61,7 +61,7 @@ module.exports = {
             ]
          }
       ],
-      'react/jsx-boolean-value': 1,
+      'react/jsx-boolean-value': 0,
       'react/jsx-closing-bracket-location': 0,
       'react/jsx-curly-spacing': 1,
       'react/jsx-indent-props': 0,

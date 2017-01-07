@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationBarUserMenu from 'components/navigation/NavigationBarUserMenu';
 import FontIcon from 'material-ui/FontIcon';
 
-export default class NavigationBar extends React.Component {
+class NavigationBar extends React.Component {
    constructor(props) {
       super(props);
 
@@ -18,16 +18,25 @@ export default class NavigationBar extends React.Component {
    }
 
    render() {
-      return <AppBar
+      return (
+         <AppBar
          className={this.props.drawerOpen ? 'app-bar expanded' : 'app-bar'}
          onLeftIconButtonTouchTap={this.props.toggleDrawer}
          iconElementRight={this.props.user
             ? <NavigationBarUserMenu user={this.props.user}/>
             : <FlatButton
-            label="Sign In"
-            icon={< FontIcon className = "fa fa-facebook-official" />}
+            label='Sign In'
+            icon={<FontIcon className='fa fa-facebook-official'/>}
             onTouchTap={this.signIn}/>}
-         title="Development"/>
+         title='Development'/>
+         );
    }
-
 }
+
+NavigationBar.propTypes = {
+   toggleDrawer: PropTypes.func,
+   drawerOpen: PropTypes.bool,
+   user: PropTypes.object
+};
+
+export default NavigationBar;

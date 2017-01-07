@@ -32,9 +32,12 @@ class App extends Component {
    }
 }
 
-App.PropTypes = {
-   children: PropTypes.object.isRequired
-}
+App.propTypes = {
+   navigationActions: PropTypes.object,
+   children: PropTypes.object.isRequired,
+   navigation: PropTypes.object.isRequired,
+   user: PropTypes.object
+};
 
 const mapStateToProps = (state) => {
    return {
