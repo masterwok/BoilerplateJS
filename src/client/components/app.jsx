@@ -10,6 +10,8 @@ class App extends Component {
    constructor(props) {
       super(props);
 
+      this.signIn = this.signIn.bind(this);
+      this.signOut = this.signOut.bind(this);
       this.toggleDrawer = this.toggleDrawer.bind(this);
    }
 
@@ -17,11 +19,24 @@ class App extends Component {
       this.props.navigationActions.toggleDrawer();
    }
 
+   signOut() {
+      window.location = '/auth/logout';
+   }
+
+   signIn() {
+      window.location = '/auth/facebook';
+   }
+
    render() {
       return (
          <MuiThemeProvider>
             <div>
-               <NavigationBar drawerOpen={this.props.navigation.drawerOpen} toggleDrawer={this.toggleDrawer} user={this.props.user}/>
+               <NavigationBar
+         drawerOpen={this.props.navigation.drawerOpen}
+         toggleDrawer={this.toggleDrawer}
+         signIn={this.signIn}
+         signOut={this.signOut}
+         user={this.props.user}/>
                <NavigationDrawer drawerOpen={this.props.navigation.drawerOpen}/>
                <div className={`app-content ${this.props.navigation.drawerOpen ? 'expanded' : ''}`}>
                   {this.props.children}
