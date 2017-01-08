@@ -1,45 +1,47 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import TextField from 'material-ui/TextField';
-import ResultsView from 'components/common/ResultsView';
+import SearchView from 'components/common/SearchView';
 import RecipeResultItem from 'components/recipes/RecipeResultItem';
+import * as recipeActions from 'actions/recipeActions';
 
 
 class RecipesPage extends Component {
    constructor(props) {
       super(props);
+
+      this.searchRecipes = this.searchRecipes.bind(this);
+   }
+
+   searchRecipes(event) {
+      this.props.recipeActions.queryRecipes(event.target.value);
    }
 
    render() {
-      return (
-         <div>
-            <div className='row center-xs'>
-               <div className='col-xs-12 col-sm-10 col-md-7 col-lg-6'>
-                  <div className='box'>
-                     <TextField hintText='Search' floatingLabelText='Find Recipes' fullWidth={true}/>
-                  </div>
-               </div>
-            </div>
-            <ResultsView items={this.props.recipe} itemComponent={RecipeResultItem}/>
-         </div>
-         );
+      return (<SearchView
+         hintText='Search'
+         floatingLabelText='Find Recipes'
+         search={this.searchRecipes}
+         items={this.props.recipes}
+         itemComponent={RecipeResultItem}
+         />);
    }
 }
 
 RecipesPage.propTypes = {
-   recipe: PropTypes.array
+   recipeActions: PropTypes.object,
+   recipes: PropTypes.array
 };
 
 const mapStateToProps = (state) => {
    return {
-      recipe: state.recipe
+      recipes: state.recipes
    };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      // navigationActions: bindActionCreators(navigationActions, dispatch)
+      recipeActions: bindActionCreators(recipeActions, dispatch)
    };
 };
 

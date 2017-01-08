@@ -4,13 +4,13 @@
 import {combineReducers} from 'redux';
 import navigation from 'reducers/navigationReducer';
 import user from 'reducers/userReducer';
-import recipe from 'reducers/recipeReducer';
+import recipes from 'reducers/recipeReducer';
 
 const rootReducer = combineReducers({
    // Add all reducers here...
    navigation,
    user,
-   recipe
+   recipes
 });
 
 export default rootReducer;

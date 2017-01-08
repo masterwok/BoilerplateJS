@@ -84,8 +84,8 @@ export const schema = {
       },
       recipes: {
          type: 'array',
-         minItems: 3,
-         maxIems: 10,
+         minItems: 8,
+         maxIems: 16,
          items: recipeMock
       }
    },

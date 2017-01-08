@@ -16,3 +16,19 @@ export function loadRecipes() {
       });
    };
 }
+
+export function queryRecipesSuccess(recipes) {
+   return { type: types.QUERY_RECIPES_SUCCESS, recipes };
+}
+
+export function queryRecipes(value) {
+   return (dispatch) => {
+      return recipeApi.query(value).then(recipes => {
+         recipes.json().then(json => {
+            dispatch(queryRecipesSuccess(json));
+         });
+      }).catch(error => {
+         throw error;
+      });
+   };
+}
