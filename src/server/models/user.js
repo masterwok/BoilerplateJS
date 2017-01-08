@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 // Schema definition for users
 const userSchema = mongoose.Schema({
+   joinedOn: {
+      type: Date,
+      required: true
+   },
    facebook: {
       id: {
          type: String,
@@ -59,6 +63,7 @@ userSchema.statics.getByFacebookId = function (id, done) {
 userSchema.statics.createFacebookUser = function (token, refreshToken, profile, done) {
    let newUser = new this();
 
+   newUser.joinedOn = Date.now();
    newUser.facebook.id = profile.id;
    newUser.facebook.token = token;
    newUser.facebook.givenName = profile.name.givenName;

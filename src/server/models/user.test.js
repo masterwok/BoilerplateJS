@@ -37,6 +37,7 @@ describe('User Model', () => {
          expect(err).to.equal(null, err);
          expect(user).to.not.equal(null);
          expect(user.id).to.not.equal(null);
+         expect(user.joinedOn).to.not.equal(null);
          expect(user.facebook.id).to.equal(mockProfile.id);
          expect(user.facebook.token).to.equal(mockProfile.token);
          expect(user.facebook.givenName).to.equal(mockProfile.name.givenName);
