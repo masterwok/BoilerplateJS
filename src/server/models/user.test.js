@@ -39,7 +39,8 @@ describe('User Model', () => {
          expect(user.id).to.not.equal(null);
          expect(user.facebook.id).to.equal(mockProfile.id);
          expect(user.facebook.token).to.equal(mockProfile.token);
-         expect(user.facebook.name).to.equal(`${mockProfile.name.givenName} ${mockProfile.name.familyName}`);
+         expect(user.facebook.givenName).to.equal(mockProfile.name.givenName);
+         expect(user.facebook.familyName).to.equal(mockProfile.name.familyName);
          expect(user.facebook.email).to.equal(mockProfile.emails[0].value);
 
          // Update the mock profile id

@@ -14,7 +14,8 @@ const userSchema = mongoose.Schema({
          unique: true
       },
       email: String,
-      name: String
+      givenName: String,
+      familyName: String
    }
 });
 
@@ -60,7 +61,8 @@ userSchema.statics.createFacebookUser = function (token, refreshToken, profile, 
 
    newUser.facebook.id = profile.id;
    newUser.facebook.token = token;
-   newUser.facebook.name = `${profile.name.givenName} ${profile.name.familyName}`;
+   newUser.facebook.givenName = profile.name.givenName;
+   newUser.facebook.familyName = profile.name.familyName;
 
    if (profile.emails.length > 0) {
       // Grab the first email

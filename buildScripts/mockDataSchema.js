@@ -1,51 +1,94 @@
 const userMock = {
-   // More objects..
-   "type": "object",
-   // Properties of this object...
-   "properties": {
-      "id": {
-         "type": "number",
-         "unique": true,
-         "minimum": 1
+   type: 'object',
+   properties: {
+      id: {
+         type: 'number',
+         unique: true,
+         minimum: 1
       },
-      "firstName": {
-         "type": "string",
-         // Use the faker library
-         "faker": "name.firstName"
-      },
-      "lastName": {
-         "type": "string",
-         "faker": "name.lastName",
-      },
-      "email": {
-         "type": "string",
-         // Use faker library
-         "faker": "internet.email",
+      facebook: {
+         type: 'object',
+         properties: {
+            id: {
+               type: 'string',
+               unique: true,
+               faker: 'random.uuid'
+            },
+            email: {
+               type: 'string',
+               faker: 'internet.email'
+            },
+            givenName: {
+               type: 'string',
+               faker: 'name.firstName'
+            },
+            'lastName': {
+               type: 'string',
+               faker: 'name.lastName',
+            }
+         },
+         required: ['id', 'email', 'givenName', 'lastName']
       }
    },
-   // These four properties will always be populated. If a property is removed
-   // it will be nullable.
-   required: ['id', 'firstName', 'lastName', 'email']
-
+   required: ['id']
 };
 
+const recipeMock = {
+   type: 'object',
+   properties: {
+      id: {
+         type: 'number',
+         unique: true,
+         minimum: 1
+      },
+      name: {
+         type: 'string',
+         faker: 'commerce.productName'
+      },
+      description: {
+         type: 'string',
+         faker: {
+            'lorem.paragraphs': [2, '\r\n']
+         }
+      },
+      createdOn: {
+         type: 'string',
+         faker: {
+            'date.recent': [100]
+         }
+      },
+      lastUpdated: {
+         type: 'string',
+         faker: {
+            'date.recent': [40]
+         }
+      },
+      imageUrl: {
+         type: 'string',
+         faker: {
+            'image.imageUrl': [400, 400, 'food']
+         }
+      }
+   },
+   required: ['id', 'name', 'description', 'createdOn', 'imageUrl']
+};
 
 export const schema = {
-   // Data structure
-   "type": "object",
-   // Properties of the object
-   "properties": {
-      // Users property
-      "users": {
-         // Of type...
-         "type": "array",
-         // Range to generate...
-         "minItems": 3,
-         "maxItems": 5,
-         // What the array contains
-         "items": userMock
+   type: 'object',
+   properties: {
+      users: {
+         type: 'array',
+         minItems: 10,
+         maxIems: 30,
+         items: userMock
+      },
+      recipies: {
+         type: 'array',
+         minItems: 40,
+         maxIems: 100,
+         items: recipeMock
       }
    },
    // Users will always have a value
-   required: ['users']
+   required: ['users', 'recipies']
 };
