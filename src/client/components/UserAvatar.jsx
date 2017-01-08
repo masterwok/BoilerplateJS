@@ -1,21 +1,15 @@
 import React, { PropTypes } from 'react';
 import Avatar from 'material-ui/Avatar';
 
-class UserAvatar extends React.Component {
-   constructor(props) {
-      super(props);
+const UserAvatar = (props) => {
+   const size = props.size || 30;
 
-      this.size = this.props.size || 30;
-   }
-
-   render() {
-      return (
-         <Avatar
-         src={`http://graph.facebook.com/v2.8/${this.props.user.facebook.id}/picture?width=${this.size}&height=${this.size}`}
-         size={this.size}/>
-         );
-   }
-}
+   return (
+      <Avatar
+      src={`http://graph.facebook.com/v2.8/${props.user.facebook.id}/picture?width=${size}&height=${size}`}
+      size={size}/>
+      );
+};
 
 UserAvatar.propTypes = {
    size: PropTypes.number,
