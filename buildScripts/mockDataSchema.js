@@ -30,7 +30,7 @@ const userMock = {
          required: ['id', 'email', 'givenName', 'lastName']
       }
    },
-   required: ['id']
+   required: ['id', 'facebook']
 };
 
 const recipeMock = {
@@ -82,7 +82,7 @@ export const schema = {
          maxIems: 30,
          items: userMock
       },
-      recipies: {
+      recipes: {
          type: 'array',
          minItems: 40,
          maxIems: 100,

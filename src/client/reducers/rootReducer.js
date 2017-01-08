@@ -2,13 +2,15 @@
 // of the user defined reducers into one.
 
 import {combineReducers} from 'redux';
-import user from 'reducers/userReducer';
 import navigation from 'reducers/navigationReducer';
+import user from 'reducers/userReducer';
+import recipe from 'reducers/recipeReducer';
 
 const rootReducer = combineReducers({
    // Add all reducers here...
+   navigation,
    user,
-   navigation
+   recipe
 });
 
 export default rootReducer;

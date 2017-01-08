@@ -6,7 +6,7 @@ const initialState = {
 
 export default function userReducer(state = initialState, action) {
    switch (action.type) {
-      case types.NAV_TOGGLE_DRAWER:
+      case types.TOGGLE_NAV_DRAWER:
          return Object.assign({}, state, {
             drawerOpen: !state.drawerOpen
          });

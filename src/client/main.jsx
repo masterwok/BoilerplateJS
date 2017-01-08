@@ -11,6 +11,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import routes from 'components/Routes';
 import { Router, browserHistory } from 'react-router';
 import configureStore from 'store/configureStore';
+import { loadRecipes } from 'actions/recipeActions';
 
 // Grab the user that's returned from the server-side.
 const user = window.user;
@@ -19,6 +20,7 @@ const user = window.user;
 const store = configureStore({
    user
 });
+store.dispatch(loadRecipes());
 
 // Inject the tap event plugin for react (React won't require this in the future).
 injectTapEventPlugin();
