@@ -39,7 +39,7 @@
     "morgan": "^1.7.0",
     "npm-run-all": "^4.0.0",
     "nsp": "^2.6.2",
-    "open": "0.0.5",
+    "open": "7.0.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "react": "^15.4.1",
